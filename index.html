@@ -3,28 +3,742 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Surendra Kumar Reddy Ruka | Embedded Systems Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #0f172a; /* Dark Navy */
+            --secondary-color: #334155; /* Slate */
+            --accent-color: #38bdf8; /* Sky Blue */
+            --text-light: #f8fafc;
+            --text-gray: #94a3b8;
+            --bg-light: #f8fafc;
+            --card-border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            transition: 0.3s;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-content h2 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .hero-content p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--text-gray);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0ea5e9;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--accent-color);
+            background: transparent;
+            color: var(--accent-color);
+            margin-left: 10px;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #000;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- SKILLS SECTION --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            border: 1px solid #f1f5f9;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .skill-header i { margin-right: 12px; font-size: 1.2rem; }
+
+        /* Icon Colors */
+        .icon-blue { color: #2563eb; }
+        .icon-purple { color: #9333ea; }
+        .icon-green { color: #16a34a; }
+        .icon-orange { color: #ea580c; }
+        .icon-red { color: #dc2626; }
+        .icon-indigo { color: #4f46e5; }
+        .icon-pink { color: #db2777; }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-start;
+        }
+
+        .tag {
+            background: #f3f4f6;
+            color: #334155;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* --- EXPERIENCE SECTION --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .timeline-date {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .timeline-company {
+            font-style: italic;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .timeline-item ul { list-style-type: disc; margin-left: 20px; }
+        .timeline-item li { margin-bottom: 8px; font-size: 0.95rem; }
+
+        /* --- PROJECTS --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover { transform: translateY(-5px); }
+        .project-content { padding: 20px; }
+        .project-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; color: var(--primary-color); }
+        .project-tech { color: var(--accent-color); font-size: 0.9rem; margin-bottom: 15px; font-weight: bold; }
+
+        /* --- EDUCATION SECTION --- */
+        .education-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .edu-card {
+            background: white;
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: box-shadow 0.3s;
+        }
+
+        .edu-card:hover { box-shadow: 0 10px 15px rgba(0,0,0,0.05); }
+
+        .edu-left { display: flex; gap: 15px; align-items: flex-start; }
+        .edu-icon { color: #2563eb; font-size: 1.2rem; margin-top: 2px; }
+        .edu-details h3 { font-size: 1.1rem; font-weight: 600; color: #0f172a; margin-bottom: 5px; }
+        .edu-details p { color: #64748b; font-size: 0.95rem; }
+        .edu-right { text-align: right; display: flex; flex-direction: column; gap: 5px; min-width: 120px; }
+        .edu-date { font-size: 0.9rem; color: #94a3b8; }
+        .edu-gpa { color: #2563eb; font-weight: 700; font-size: 1rem; }
+
+        /* --- ACHIEVEMENTS & CERTIFICATIONS SECTION (NEW) --- */
+        .accomplish-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .accomplish-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            border: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .acc-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            color: #0f172a;
+        }
+
+        .acc-header i {
+            color: #d97706; /* Gold/Orange color */
+            font-size: 1.2rem;
+        }
+
+        .acc-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .accomplish-card p {
+            color: #64748b;
+            font-size: 1rem;
+        }
+
+        .acc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .acc-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #334155;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .acc-list i {
+            color: #3b82f6; /* Blue chevron */
+            font-size: 0.8rem;
+            margin-top: 6px;
+        }
+
+        /* Education Mobile Responsive */
+        @media (max-width: 768px) {
+            .edu-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .edu-right {
+                text-align: left;
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
+            }
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 2rem; }
+            .contact-info { gap: 20px; }
+        }
+
+        /* --- CONTACT --- */
+        .contact-section {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+        }
+        .contact-info { display: flex; justify-content: center; gap: 40px; margin-top: 30px; flex-wrap: wrap; }
+        .contact-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .contact-item i { font-size: 2rem; color: var(--accent-color); }
+
+        /* --- FOOTER --- */
+        footer { background-color: #020617; color: var(--text-gray); text-align: center; padding: 20px 0; font-size: 0.9rem; }
+    </style>
 </head>
 <body>
+
+    <!-- Header -->
     <header>
-        <h1>[Your Name]</h1>
+        <div class="container">
+            <nav>
+                <div class="logo">SURENDRA<span style="color: white;">RUKA</span></div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <section>
-        <h2>About Me</h2>
-        <p>[Your Bio]</p>
+
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+        <div class="container hero-content">
+            <h1>Surendra Kumar Reddy Ruka</h1>
+            <h2>Embedded Systems Engineer</h2>
+            <p>Specializing in STM32 firmware, real-time communication systems, and hardware design. Adept at creating robust, efficient, and scalable IoT solutions.</p>
+            <div>
+                <a href="#contact" class="btn">Contact Me</a>
+                <a href="https://github.com/Ruka-Surendra-Kumar-Reddy" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/surendra-kumar-reddy-ruka-093327255/" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </div>
     </section>
-    <section>
-        <h2>Projects</h2>
-        <ul>
-            <li>[Project 1]</li>
-            <li>[Project 2]</li>
-            <li>[Project 3]</li>
-        </ul>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            
+            <div class="skills-grid">
+                <!-- 1. Programming -->
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-code icon-blue"></i> Programming
+                    </div>
+                    <div class="tags">
+                        <span class="tag">C</span>
+                        <span class="tag">C++</span>
+                        <span class="tag">Embedded C</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+
+                <!-- 2. Microcontrollers -->
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-microchip icon-purple"></i> Microcontrollers
+                    </div>
+                    <div class="tags">
+                        <span class="tag">STM32 (F1/F3/F4/F7 series)</span>
+                        <span class="tag">Arduino</span>
+                        <span class="tag">ESP32</span>
+                    </div>
+                </div>
+
+                <!-- 3. Protocols -->
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-wifi icon-green"></i> Protocols
+                    </div>
+                    <div class="tags">
+                        <span class="tag">UART</span>
+                        <span class="tag">SPI</span>
+                        <span class="tag">I2C</span>
+                        <span class="tag">RS485</span>
+                        <span class="tag">CAN</span>
+                        <span class="tag">Modbus RTU/TCP</span>
+                        <span class="tag">MQTT</span>
+                        <span class="tag">Bluetooth</span>
+                        <span class="tag">LoRa</span>
+                    </div>
+                </div>
+
+                <!-- 4. Embedded Systems -->
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-memory icon-orange"></i> Embedded Systems
+                    </div>
+                    <div class="tags">
+                        <span class="tag">FreeRTOS</span>
+                        <span class="tag">Device Drivers</span>
+                        <span class="tag">Interrupts</span>
+                        <span class="tag">Timers</span>
+                        <span class="tag">ADC/DAC</span>
+                        <span class="tag">Sensor Integration</span>
+                    </div>
+                </div>
+
+                <!-- 5. PCB Tools -->
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-project-diagram icon-red"></i> PCB Tools
+                    </div>
+                    <div class="tags">
+                        <span class="tag">KiCad</span>
+                        <span class="tag">Altium Designer</span>
+                        <span class="tag">DipTrace</span>
+                        <span class="tag">Eagle</span>
+                    </div>
+                </div>
+
+                <!-- 6. Dev Tools -->
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-wrench icon-indigo"></i> Dev Tools
+                    </div>
+                    <div class="tags">
+                        <span class="tag">STM32CubeIDE</span>
+                        <span class="tag">STM32CubeProgrammer</span>
+                        <span class="tag">Arduino IDE</span>
+                        <span class="tag">Git</span>
+                        <span class="tag">GitHub</span>
+                    </div>
+                </div>
+
+                <!-- 7. Other -->
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-shield-alt icon-pink"></i> Other
+                    </div>
+                    <div class="tags">
+                        <span class="tag">SCADA</span>
+                        <span class="tag">DWIN GUI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <!-- Experience Section -->
+    <section id="experience" style="background-color: white;">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                
+                <!-- Job 1 -->
+                <div class="timeline-item">
+                    <span class="timeline-date">April 2024 – Present</span>
+                    <h3 class="timeline-title">Embedded System Engineer</h3>
+                    <p class="timeline-company">Radiogeect Digital Pvt Ltd – Jamshedpur, India</p>
+                    <ul>
+                        <li>Developed <strong>Radiowave Remote IO</strong>, a wireless P2P transceiver system using LoRa with a 10 km range.</li>
+                        <li>Engineered bidirectional communication for analog/digital data transmission using <strong>STM32F407</strong>.</li>
+                        <li>Designed a UWB-based real-time position tracking system for EOT cranes using STM32 and FreeRTOS.</li>
+                        <li>Integrated ADS1115 and MCP4725 for precise analog data acquisition and output.</li>
+                        <li>Built radar-based vehicle speed monitoring systems using LD2415H and ESP32 with LED matrix displays.</li>
+                    </ul>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="timeline-item">
+                    <span class="timeline-date">July 2023 – March 2024</span>
+                    <h3 class="timeline-title">Embedded System Developer Intern</h3>
+                    <p class="timeline-company">Radiogeect Digital Pvt Ltd – Jamshedpur, India</p>
+                    <ul>
+                        <li>Developed firmware for process controllers using <strong>STM32F373C8T6</strong>.</li>
+                        <li>Designed custom PCBs for process controllers with 4–20 mA inputs.</li>
+                        <li>Created custom libraries for driving P10, P4, and P2.5 LED matrix displays with STM32F407VGT6.</li>
+                        <li>Built temperature/humidity displays using SHT20 sensors and RS485 communication.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Academic Projects & Designs</h2>
+            <div class="project-grid">
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-title">Amplifying Education System</div>
+                        <div class="project-tech">STM32 | LoRa | GSM</div>
+                        <p>Wireless classroom communication system enabling real-time announcements and timetable automation.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-title">STM32F405 Eval Board</div>
+                        <div class="project-tech">KiCad | 4-layer PCB</div>
+                        <p>Designed a custom development board with UART, SPI, I2C, USB, and GPIO interfaces for embedded prototyping.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-title">Home Automation System</div>
+                        <div class="project-tech">ESP32 | Blynk | Wi-Fi</div>
+                        <p>Smart home controller allowing for remote switching of appliances over Wi-Fi via the Blynk IoT platform.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-title">Accident Prevention System</div>
+                        <div class="project-tech">Arduino | Eye-Blink Sensor</div>
+                        <p>Driver drowsiness detection system with alert triggers based on real-time eye-blink monitoring.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" style="background-color: white;">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-container">
+                
+                <!-- B.Tech -->
+                <div class="edu-card">
+                    <div class="edu-left">
+                        <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="edu-details">
+                            <h3>B.Tech – Electronics & Communication Engineering</h3>
+                            <p>Rajiv Gandhi University of Knowledge Technologies, Srikakulam</p>
+                        </div>
+                    </div>
+                    <div class="edu-right">
+                        <span class="edu-date">April 2024</span>
+                        <span class="edu-gpa">GPA: 8.46</span>
+                    </div>
+                </div>
+
+                <!-- Pre-University -->
+                <div class="edu-card">
+                    <div class="edu-left">
+                        <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="edu-details">
+                            <h3>Pre-University Course – MPC</h3>
+                            <p>Rajiv Gandhi University of Knowledge Technologies, Srikakulam</p>
+                        </div>
+                    </div>
+                    <div class="edu-right">
+                        <span class="edu-date">May 2020</span>
+                        <span class="edu-gpa">GPA: 8.0</span>
+                    </div>
+                </div>
+
+                <!-- SSC -->
+                <div class="edu-card">
+                    <div class="edu-left">
+                        <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="edu-details">
+                            <h3>Class X – SSC Board</h3>
+                            <p>Zilla Parishad High School, R.V. Palli</p>
+                        </div>
+                    </div>
+                    <div class="edu-right">
+                        <span class="edu-date">April 2018</span>
+                        <span class="edu-gpa">GPA: 9.8</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements & Certifications Section (Refined View) -->
+    <section id="achievements">
+        <div class="container">
+            <h2 class="section-title">Accomplishments & Certifications</h2>
+            <div class="accomplish-container">
+                
+                <!-- Chess Achievements -->
+                <div class="accomplish-card">
+                    <div class="acc-header">
+                        <i class="fas fa-medal"></i>
+                        <h3>Chess Achievements</h3>
+                    </div>
+                    <p>State-Level Chess Player and 3-time District First Place winner</p>
+                </div>
+
+                <!-- Udemy Certifications -->
+                <div class="accomplish-card">
+                    <div class="acc-header">
+                        <i class="fas fa-medal"></i>
+                        <h3>Udemy Certifications</h3>
+                    </div>
+                    <ul class="acc-list">
+                        <li>
+                            <i class="fas fa-chevron-right"></i>
+                            <span>Mastering Microcontroller and Embedded Driver Development (MCU1) – Bare-metal driver development in Embedded C for STM32 (GPIO, I2C, SPI, USART)</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-chevron-right"></i>
+                            <span>Mastering Microcontroller: Timers, PWM, CAN, Low Power (MCU2) – STM32 HAL-based driver programming with Timers, RTC, PWM, CAN, and low-power modes</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white; display: block;">Get In Touch</h2>
+            <p>I am currently available for new opportunities in embedded systems engineering.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:surendraruka514@gmail.com">surendraruka514@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+916304480702">+91 6304480702</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Kadapa, Andhra Pradesh, India</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <h2>Contact</h2>
-        <p>[Your Contact Information]</p>
+        <div class="container">
+            <p>&copy; 2025 Surendra Kumar Reddy Ruka. All Rights Reserved.</p>
+        </div>
     </footer>
+
 </body>
 </html>
