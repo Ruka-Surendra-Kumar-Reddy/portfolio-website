@@ -1,380 +1,983 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surendra Kumar Reddy Ruka | Embedded Systems Engineer</title>
-    <meta name="description"
-        content="Portfolio of Surendra Kumar Reddy Ruka, an Embedded Systems Engineer specializing in STM32, IoT, and Real-Time Systems.">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Surendra Ruka | Embedded Systems Freelancer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #0a0c10;
+  --surface: #111318;
+  --surface2: #181c24;
+  --border: #1e2330;
+  --accent: #00e5ff;
+  --accent2: #7b61ff;
+  --accent3: #00ff9d;
+  --text: #e8eaf0;
+  --muted: #6b7280;
+  --mono: 'Space Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+  --display: 'Syne', sans-serif;
+}
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ruka-surendra-kumar-reddy.github.io/portfolio-website/">
-    <meta property="og:title" content="Surendra Kumar Reddy Ruka | Embedded Systems Engineer">
-    <meta property="og:description"
-        content="Specializing in STM32 firmware, real-time communication systems, and hardware design.">
-    <meta property="og:image"
-        content="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://ruka-surendra-kumar-reddy.github.io/portfolio-website/">
-    <meta property="twitter:title" content="Surendra Kumar Reddy Ruka | Embedded Systems Engineer">
-    <meta property="twitter:description"
-        content="Specializing in STM32 firmware, real-time communication systems, and hardware design.">
-    <meta property="twitter:image"
-        content="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 5vw;
+  background: rgba(10,12,16,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--mono); font-size: 0.8rem;
+  color: var(--accent); letter-spacing: 0.1em; text-decoration: none;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-family: var(--mono); font-size: 0.72rem; color: var(--muted);
+  text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-cta {
+  font-family: var(--mono); font-size: 0.72rem; color: var(--bg);
+  background: var(--accent); padding: 0.5rem 1.2rem; border-radius: 2px;
+  text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase;
+  transition: opacity 0.2s; white-space: nowrap;
+}
+.nav-cta:hover { opacity: 0.85; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem 5vw 5rem;
+  position: relative; overflow: hidden;
+}
+.hero-grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.hero-glow {
+  position: absolute; width: 500px; height: 500px;
+  border-radius: 50%; filter: blur(100px); pointer-events: none;
+}
+.glow-1 { background: rgba(0,229,255,0.07); top: -100px; left: -100px; animation: pulse 8s ease-in-out infinite; }
+.glow-2 { background: rgba(123,97,255,0.06); bottom: -150px; right: -100px; animation: pulse 10s ease-in-out infinite reverse; }
+@keyframes pulse {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.7; }
+}
+.hero-tag {
+  font-family: var(--mono); font-size: 0.7rem; color: var(--accent);
+  letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-tag::before {
+  content: ''; display: inline-block; width: 32px; height: 1px; background: var(--accent); flex-shrink: 0;
+}
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 8vw, 6rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+.hero h1 .line-accent { color: var(--accent); }
+.hero-sub {
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+  color: var(--muted); max-width: 50ch;
+  margin-bottom: 2.5rem; font-weight: 300;
+}
+.hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.btn-primary {
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em;
+  text-transform: uppercase; background: var(--accent); color: var(--bg);
+  padding: 0.85rem 1.75rem; border-radius: 2px; text-decoration: none;
+  transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
+  white-space: nowrap;
+}
+.btn-primary:hover { background: #00cfea; }
+.btn-ghost {
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em;
+  text-transform: uppercase; background: transparent; color: var(--text);
+  padding: 0.85rem 1.75rem; border-radius: 2px; border: 1px solid var(--border);
+  text-decoration: none; transition: all 0.2s; white-space: nowrap;
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.hero-stats {
+  display: grid; grid-template-columns: repeat(4, auto);
+  gap: 2.5rem; margin-top: 4rem; padding-top: 2.5rem;
+  border-top: 1px solid var(--border); width: fit-content;
+}
+.stat-num {
+  font-family: var(--display); font-size: 2rem;
+  font-weight: 800; color: var(--accent);
+}
+.stat-label {
+  font-family: var(--mono); font-size: 0.65rem; color: var(--muted);
+  letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem;
+}
+
+/* ── SECTION BASE ── */
+section { padding: 5rem 5vw; }
+.section-label {
+  font-family: var(--mono); font-size: 0.68rem; color: var(--accent);
+  letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.section-label::before {
+  content: ''; display: inline-block; width: 28px; height: 1px;
+  background: var(--accent); flex-shrink: 0;
+}
+.section-title {
+  font-family: var(--display); font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 0.75rem;
+}
+.section-desc {
+  color: var(--muted); max-width: 55ch; margin-bottom: 3rem;
+  font-weight: 300; font-size: 0.95rem;
+}
+
+/* ── SERVICES ── */
+#services { background: var(--surface); }
+.services-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px; background: var(--border); border: 1px solid var(--border);
+}
+.service-card {
+  background: var(--surface); padding: 2rem;
+  position: relative; overflow: hidden; transition: background 0.3s;
+}
+.service-card:hover { background: var(--surface2); }
+.service-num {
+  font-family: var(--mono); font-size: 0.65rem; color: var(--accent);
+  letter-spacing: 0.1em; margin-bottom: 1rem; display: block;
+}
+.service-card h3 {
+  font-family: var(--display); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem;
+}
+.service-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.25rem; }
+.service-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.tag {
+  font-family: var(--mono); font-size: 0.62rem; color: var(--accent2);
+  background: rgba(123,97,255,0.1); border: 1px solid rgba(123,97,255,0.2);
+  padding: 3px 7px; border-radius: 2px; letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* ── WHY ME ── */
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+.why-item {
+  padding: 1.75rem; border: 1px solid var(--border); border-radius: 3px;
+  position: relative; overflow: hidden; transition: border-color 0.3s;
+}
+.why-item:hover { border-color: rgba(0,229,255,0.3); }
+.why-item::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+}
+.why-item:hover::after { transform: scaleX(1); }
+.why-icon { font-size: 1.6rem; margin-bottom: 0.75rem; }
+.why-item h4 { font-family: var(--display); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+.why-item p { font-size: 0.82rem; color: var(--muted); }
+
+/* ── WORK / ACCORDION ── */
+#work { background: var(--surface); }
+.accordion { display: flex; flex-direction: column; gap: 2px; }
+.acc-item { border: 1px solid var(--border); border-radius: 3px; overflow: hidden; transition: border-color 0.3s; }
+.acc-item.open { border-color: rgba(0,229,255,0.3); }
+
+.acc-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.25rem 1.5rem; cursor: pointer; background: var(--surface);
+  transition: background 0.2s; user-select: none; gap: 1rem;
+  flex-wrap: nowrap;
+}
+.acc-header:hover, .acc-item.open .acc-header { background: var(--surface2); }
+
+.acc-left { display: flex; align-items: flex-start; gap: 1rem; flex: 1; min-width: 0; }
+.acc-index {
+  font-family: var(--mono); font-size: 0.68rem; color: var(--accent);
+  letter-spacing: 0.1em; flex-shrink: 0; padding-top: 0.2rem;
+}
+.acc-meta { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; flex: 1; }
+.acc-category {
+  font-family: var(--mono); font-size: 0.6rem; color: var(--muted);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.acc-title {
+  font-family: var(--display); font-size: 1rem; font-weight: 700;
+  line-height: 1.25; word-break: break-word;
+}
+.acc-tags-inline { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.35rem; }
+
+.acc-chevron {
+  font-size: 0.65rem; color: var(--muted); flex-shrink: 0;
+  width: 20px; text-align: center; align-self: center;
+  transition: color 0.2s;
+}
+.acc-item.open .acc-chevron { color: var(--accent); }
+
+.acc-body {
+  padding: 1.25rem 1.5rem 1.75rem 3.5rem;
+  background: var(--surface2); border-top: 1px solid var(--border);
+  animation: accOpen 0.2s ease;
+}
+@keyframes accOpen {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.acc-body p {
+  font-size: 0.9rem; color: var(--muted); line-height: 1.75;
+  margin-bottom: 1rem; max-width: 70ch;
+}
+.acc-tech { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.25rem; }
+.acc-gallery-link {
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em;
+  color: var(--accent); text-decoration: none; border: 1px solid rgba(0,229,255,0.25);
+  padding: 0.45rem 1rem; border-radius: 2px; display: inline-flex;
+  align-items: center; gap: 0.4rem; transition: all 0.2s;
+}
+.acc-gallery-link:hover { background: rgba(0,229,255,0.06); border-color: var(--accent); }
+
+/* Gallery drive section */
+.gallery-header { margin-top: 4rem; margin-bottom: 1.5rem; }
+.gallery-drive-btn {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--bg); background: var(--accent);
+  padding: 0.85rem 1.75rem; border-radius: 2px; text-decoration: none;
+  margin-bottom: 2rem; transition: all 0.2s;
+}
+.gallery-drive-btn:hover { background: #00cfea; }
+.drive-embed-wrap {
+  border: 1px solid var(--border); border-radius: 4px; overflow: hidden; background: var(--surface2);
+}
+.drive-embed-bar {
+  display: flex; align-items: center; gap: 1rem; padding: 0.7rem 1.25rem;
+  background: var(--surface); border-bottom: 1px solid var(--border);
+}
+.drive-bar-dots { display: flex; gap: 5px; }
+.drive-bar-dots span { width: 10px; height: 10px; border-radius: 50%; }
+.drive-bar-dots span:nth-child(1) { background: #ff5f57; }
+.drive-bar-dots span:nth-child(2) { background: #febc2e; }
+.drive-bar-dots span:nth-child(3) { background: #28c840; }
+.drive-bar-label {
+  flex: 1; font-family: var(--mono); font-size: 0.65rem;
+  color: var(--muted); letter-spacing: 0.04em;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.drive-bar-open {
+  font-family: var(--mono); font-size: 0.65rem; color: var(--accent);
+  text-decoration: none; flex-shrink: 0; transition: opacity 0.2s;
+}
+.drive-bar-open:hover { opacity: 0.7; }
+.drive-embed-frame { width: 100%; height: 520px; }
+.drive-embed-frame iframe { width: 100%; height: 100%; border: none; display: block; }
+.drive-embed-footer {
+  padding: 0.7rem 1.25rem; border-top: 1px solid var(--border);
+  font-family: var(--mono); font-size: 0.62rem; color: var(--muted);
+}
+
+/* ── PROCESS ── */
+.process-steps {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+  margin-top: 3rem; position: relative;
+}
+.process-steps::before {
+  content: ''; position: absolute; top: 24px; left: 0; right: 0; height: 1px;
+  background: var(--border);
+}
+.process-step { padding: 0 1.25rem 2rem; position: relative; }
+.step-dot {
+  width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--border);
+  background: var(--bg); display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 0.72rem; color: var(--accent);
+  margin-bottom: 1.25rem; position: relative; z-index: 1;
+}
+.process-step h4 { font-family: var(--display); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+.process-step p { font-size: 0.8rem; color: var(--muted); }
+
+/* ── TECH ── */
+.tech-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 3rem;
+}
+.tech-item {
+  background: var(--surface); padding: 1.25rem 0.75rem;
+  text-align: center; transition: background 0.2s;
+}
+.tech-item:hover { background: var(--surface2); }
+.tech-item .ti { font-size: 1.4rem; display: block; margin-bottom: 0.4rem; }
+.tech-name { font-family: var(--mono); font-size: 0.6rem; color: var(--muted); letter-spacing: 0.04em; }
+
+/* ── CONTACT ── */
+#contact { background: var(--surface); }
+.contact-wrap { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start; }
+.contact-info h2 {
+  font-family: var(--display); font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+  font-weight: 800; line-height: 1.1; margin-bottom: 1.25rem;
+}
+.contact-info p { color: var(--muted); margin-bottom: 2rem; font-weight: 300; font-size: 0.92rem; }
+.contact-channels { display: flex; flex-direction: column; gap: 0.75rem; }
+.channel-link {
+  display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.1rem;
+  border: 1px solid var(--border); border-radius: 3px; text-decoration: none;
+  color: var(--text); transition: all 0.2s; font-size: 0.88rem;
+}
+.channel-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,229,255,0.04); }
+.channel-icon {
+  width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; border: 1px solid var(--border); border-radius: 3px; flex-shrink: 0;
+}
+.channel-label { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.06em; }
+.channel-val { font-size: 0.85rem; word-break: break-all; }
+.contact-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+.form-label {
+  font-family: var(--mono); font-size: 0.65rem; color: var(--muted);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.form-input, .form-select, .form-textarea {
+  background: var(--bg); border: 1px solid var(--border); color: var(--text);
+  padding: 0.8rem 0.9rem; border-radius: 2px; font-family: var(--sans);
+  font-size: 0.88rem; transition: border-color 0.2s; outline: none; width: 100%;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent); }
+.form-select option { background: var(--surface); }
+.form-textarea { resize: vertical; min-height: 120px; }
+.form-submit {
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.1em;
+  text-transform: uppercase; background: var(--accent); color: var(--bg);
+  border: none; padding: 0.9rem 2rem; border-radius: 2px; cursor: pointer;
+  transition: all 0.2s; align-self: flex-start;
+}
+.form-submit:hover { background: #00cfea; }
+
+/* ── FOOTER ── */
+footer {
+  padding: 2rem 5vw; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+footer p { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); }
+.footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.footer-links a {
+  font-family: var(--mono); font-size: 0.65rem; color: var(--muted);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--accent); }
+
+/* ── FADE IN ── */
+.fade-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ─────────────────────────────────────
+   MOBILE — max-width: 640px
+───────────────────────────────────── */
+@media (max-width: 640px) {
+
+  /* Nav */
+  .nav-links { display: none; }
+  nav { padding: 0.9rem 4vw; }
+
+  /* Hero */
+  .hero { padding: 6rem 4vw 4rem; min-height: unset; }
+  .hero h1 { font-size: clamp(1.9rem, 9vw, 2.8rem); }
+  .hero-sub { font-size: 0.88rem; }
+  .hero-actions { flex-direction: column; }
+  .btn-primary, .btn-ghost { width: 100%; justify-content: center; font-size: 0.72rem; }
+  .hero-stats { grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 2.5rem; width: 100%; }
+  .stat-num { font-size: 1.6rem; }
+  .stat-label { font-size: 0.6rem; }
+
+  /* Sections */
+  section { padding: 3.5rem 4vw; }
+  .section-title { font-size: clamp(1.5rem, 7vw, 2rem); }
+  .section-desc { font-size: 0.88rem; margin-bottom: 2rem; }
+
+  /* Services */
+  .services-grid { grid-template-columns: 1fr; }
+
+  /* Why */
+  .why-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+  /* Accordion — KEY FIX: stack everything vertically, no overlap */
+  .acc-header {
+    padding: 1rem 0.9rem;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+  }
+  .acc-left {
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+    flex: 1;
+  }
+  .acc-index { font-size: 0.62rem; }
+  .acc-meta { min-width: 0; width: 100%; }
+  .acc-title { font-size: 0.9rem; white-space: normal; word-break: break-word; }
+  .acc-category { font-size: 0.58rem; }
+  .acc-tags-inline { display: none; } /* Hide inline tags on mobile — shown in body */
+  .acc-chevron { align-self: flex-start; margin-top: 0.15rem; }
+  .acc-body { padding: 1rem 0.9rem 1.5rem 0.9rem; }
+  .acc-body p { font-size: 0.84rem; }
+
+  /* Gallery */
+  .gallery-drive-btn { font-size: 0.68rem; padding: 0.75rem 1.25rem; width: 100%; justify-content: center; }
+  .drive-embed-frame { height: 340px; }
+  .drive-bar-label { font-size: 0.58rem; }
+
+  /* Process */
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .process-steps::before { display: none; }
+
+  /* Tech */
+  .tech-grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* Contact */
+  .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-submit { width: 100%; }
+  .channel-val { font-size: 0.78rem; word-break: break-all; }
+
+  /* Footer */
+  footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+  .hero h1 { font-size: 1.75rem; }
+  .process-steps { grid-template-columns: 1fr; }
+  .tech-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
 </head>
-
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">SURENDRA<span>RUKA</span></div>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">SURENDRA.RUKA</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#tech">Tech</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me →</a>
+</nav>
 
-                <div class="nav-actions">
-                    <button id="theme-toggle" aria-label="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
-                    <button class="hamburger" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
-                </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow glow-1"></div>
+  <div class="hero-glow glow-2"></div>
 
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+  <div class="hero-tag">Available for Freelance Projects</div>
+
+  <h1>Embedded<br>Systems<br><span class="line-accent">Engineer.</span></h1>
+
+  <p class="hero-sub">I build robust firmware, custom PCBs, and industrial IoT solutions that run reliably in the real world — from concept to deployment.</p>
+
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Start a Project →</a>
+    <a href="#work" class="btn-ghost">View My Work</a>
+  </div>
+
+  <div class="hero-stats">
+    <div><div class="stat-num">2+</div><div class="stat-label">Years Experience</div></div>
+    <div><div class="stat-num">10+</div><div class="stat-label">Systems Built</div></div>
+    <div><div class="stat-num">5+</div><div class="stat-label">km Wireless Range</div></div>
+    <div><div class="stat-num">100%</div><div class="stat-label">Client Focus</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">What I Do</div>
+  <h2 class="section-title">Services I Offer</h2>
+  <p class="section-desc">End-to-end embedded engineering — from the first line of firmware to production-ready hardware.</p>
+
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <span class="service-num">01 — FIRMWARE</span>
+      <h3>Firmware Development</h3>
+      <p>Custom, production-grade firmware for STM32, ESP32, and Arduino. Bare-metal and RTOS-based with clean, maintainable code.</p>
+      <div class="service-tags">
+        <span class="tag">STM32</span><span class="tag">FreeRTOS</span><span class="tag">ESP32</span><span class="tag">Embedded C/C++</span><span class="tag">HAL Drivers</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-in">
+      <span class="service-num">02 — HARDWARE</span>
+      <h3>PCB Design</h3>
+      <p>Schematic capture and multi-layer PCB layout using KiCad and Altium. From simple breakouts to complex 4-layer industrial boards.</p>
+      <div class="service-tags">
+        <span class="tag">KiCad</span><span class="tag">Altium</span><span class="tag">4-Layer PCB</span><span class="tag">DipTrace</span><span class="tag">Eagle</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-in">
+      <span class="service-num">03 — IOT</span>
+      <h3>IoT Solutions</h3>
+      <p>End-to-end IoT design — sensor integration, wireless comms, cloud connectivity, and real-time dashboards.</p>
+      <div class="service-tags">
+        <span class="tag">MQTT</span><span class="tag">LoRa</span><span class="tag">Wi-Fi</span><span class="tag">Blynk</span><span class="tag">ADC/DAC</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-in">
+      <span class="service-num">04 — PROTOCOLS</span>
+      <h3>Protocol Integration</h3>
+      <p>Deep expertise in industrial comms: CAN, Modbus, RS485, LoRa, UART, SPI, and I2C integrated into your infrastructure.</p>
+      <div class="service-tags">
+        <span class="tag">CAN Bus</span><span class="tag">Modbus</span><span class="tag">RS485</span><span class="tag">LoRa</span><span class="tag">SPI / I2C</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-in">
+      <span class="service-num">05 — SIGNAL INTEGRITY</span>
+      <h3>Signal Integrity Analysis</h3>
+      <p>Pre- and post-layout SI analysis. I catch reflections, crosstalk, skew, and impedance mismatch before fabrication — saving costly re-spins.</p>
+      <div class="service-tags">
+        <span class="tag">Impedance Control</span><span class="tag">Crosstalk</span><span class="tag">Diff Pairs</span><span class="tag">Eye Diagrams</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-in">
+      <span class="service-num">06 — POWER INTEGRITY</span>
+      <h3>Power Integrity Simulation</h3>
+      <p>DC and AC PDN analysis for clean, stable power delivery. Covers decoupling strategy, IR drop, and switching noise suppression.</p>
+      <div class="service-tags">
+        <span class="tag">PDN Analysis</span><span class="tag">Decoupling</span><span class="tag">IR Drop</span><span class="tag">LDO / SMPS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ME -->
+<section id="why">
+  <div class="section-label">Why Work With Me</div>
+  <h2 class="section-title">What Sets Me Apart</h2>
+  <p class="section-desc">I treat every client project like it's my own product.</p>
+  <div class="why-grid">
+    <div class="why-item fade-in"><div class="why-icon">⚡</div><h4>Fast Turnaround</h4><p>I respond within 24 hours and deliver working prototypes quickly.</p></div>
+    <div class="why-item fade-in"><div class="why-icon">🔍</div><h4>Detail-Obsessed</h4><p>From signal integrity on PCBs to interrupt timing in firmware — I sweat the small stuff.</p></div>
+    <div class="why-item fade-in"><div class="why-icon">🏭</div><h4>Industrial Experience</h4><p>Real systems for cranes, process controllers, and wireless industrial networks — not just hobby projects.</p></div>
+    <div class="why-item fade-in"><div class="why-icon">🤝</div><h4>Clear Communication</h4><p>Regular updates, honest timelines. No surprises, no ghosting.</p></div>
+    <div class="why-item fade-in"><div class="why-icon">📦</div><h4>Full Deliverables</h4><p>Source code, schematics, BOM, and docs — everything you need to manufacture or hand off.</p></div>
+    <div class="why-item fade-in"><div class="why-icon">🔧</div><h4>Post-Delivery Support</h4><p>Bug fixes and questions are always welcome after project completion.</p></div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-label">Portfolio</div>
+  <h2 class="section-title">Selected Work</h2>
+  <p class="section-desc">Click any project to expand details. 7 systems designed, built, and deployed.</p>
+
+  <div class="accordion">
+
+    <div class="acc-item open">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <div class="acc-left">
+          <span class="acc-index">01</span>
+          <div class="acc-meta">
+            <span class="acc-category">Industrial · Wireless</span>
+            <div class="acc-title">Radiowave Remote IO System</div>
+            <div class="acc-tags-inline"><span class="tag">STM32F407</span><span class="tag">LoRa</span></div>
+          </div>
         </div>
-    </header>
+        <span class="acc-chevron">▲</span>
+      </div>
+      <div class="acc-body">
+        <p>Wireless P2P transceiver system using LoRa achieving a 5+ km range. Enables bidirectional analog/digital data transmission over air for remote industrial IO — replacing costly wired infrastructure. Built on STM32F407 with custom PCB and ruggedized enclosure for outdoor deployment.</p>
+        <div class="acc-tech"><span class="tag">STM32F407</span><span class="tag">LoRa</span><span class="tag">P2P Comms</span><span class="tag">Analog IO</span><span class="tag">ADS1115</span><span class="tag">MCP4725</span></div>
+        <a href="https://drive.google.com/drive/folders/1VPiEdBIWW1IWuNhIMDQUcQ8wvC92hroj" target="_blank" class="acc-gallery-link">📁 View Hardware Photos →</a>
+      </div>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="about">
-        <div class="container hero-content">
-            <h1>Surendra Kumar Reddy Ruka</h1>
-            <h2>Embedded Systems Engineer</h2>
-            <p>Specializing in STM32 firmware, real-time communication systems, and hardware design. Adept at creating
-                robust, efficient, and scalable IoT solutions.</p>
-            <div class="hero-btns">
-                <a href="./resume.pdf" download class="btn"><i class="fas fa-download"></i> Download Resume</a>
-                <a href="#contact" class="btn btn-outline">Contact Me</a>
-                <a href="https://github.com/Ruka-Surendra-Kumar-Reddy" target="_blank" class="btn btn-outline"><i
-                        class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/surendra-kumar-reddy-ruka-093327255/" target="_blank"
-                    class="btn btn-outline"><i class="fab fa-linkedin"></i></a>
-            </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <div class="acc-left">
+          <span class="acc-index">02</span>
+          <div class="acc-meta">
+            <span class="acc-category">Positioning · Industrial Safety</span>
+            <div class="acc-title">UWB Crane Tracking System</div>
+            <div class="acc-tags-inline"><span class="tag">UWB</span><span class="tag">FreeRTOS</span></div>
+          </div>
         </div>
-    </section>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body" style="display:none">
+        <p>Real-time position tracking for EOT cranes using Ultra-Wideband technology. STM32 + FreeRTOS-based system delivering centimeter-level accuracy for safe crane operation in industrial facilities. Prevents collision incidents with live positional alerts.</p>
+        <div class="acc-tech"><span class="tag">UWB</span><span class="tag">STM32</span><span class="tag">FreeRTOS</span><span class="tag">RTLS</span><span class="tag">Real-time Alerts</span></div>
+        <a href="https://drive.google.com/drive/folders/1VPiEdBIWW1IWuNhIMDQUcQ8wvC92hroj" target="_blank" class="acc-gallery-link">📁 View Hardware Photos →</a>
+      </div>
+    </div>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-
-            <div class="skills-grid">
-                <!-- 1. Programming -->
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <i class="fas fa-code"></i> Programming
-                    </div>
-                    <div class="tags">
-                        <span class="tag">C</span>
-                        <span class="tag">C++</span>
-                        <span class="tag">Embedded C</span>
-                        <span class="tag">Python</span>
-                    </div>
-                </div>
-
-                <!-- 2. Microcontrollers -->
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <i class="fas fa-microchip"></i> Microcontrollers
-                    </div>
-                    <div class="tags">
-                        <span class="tag">STM32 (F1/F3/F4/F7)</span>
-                        <span class="tag">Arduino</span>
-                        <span class="tag">ESP32</span>
-                    </div>
-                </div>
-
-                <!-- 3. Protocols -->
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <i class="fas fa-wifi"></i> Protocols
-                    </div>
-                    <div class="tags">
-                        <span class="tag">UART</span>
-                        <span class="tag">SPI</span>
-                        <span class="tag">I2C</span>
-                        <span class="tag">RS485</span>
-                        <span class="tag">CAN</span>
-                        <span class="tag">Modbus</span>
-                        <span class="tag">MQTT</span>
-                        <span class="tag">LoRa</span>
-                    </div>
-                </div>
-
-                <!-- 4. Embedded Systems -->
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <i class="fas fa-memory"></i> Embedded Systems
-                    </div>
-                    <div class="tags">
-                        <span class="tag">FreeRTOS</span>
-                        <span class="tag">Device Drivers</span>
-                        <span class="tag">Interrupts</span>
-                        <span class="tag">Timers</span>
-                        <span class="tag">ADC/DAC</span>
-                    </div>
-                </div>
-
-                <!-- 5. PCB Tools -->
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <i class="fas fa-project-diagram"></i> PCB Tools
-                    </div>
-                    <div class="tags">
-                        <span class="tag">KiCad</span>
-                        <span class="tag">Altium Designer</span>
-                        <span class="tag">DipTrace</span>
-                        <span class="tag">Eagle</span>
-                    </div>
-                </div>
-
-                <!-- 6. Dev Tools -->
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <i class="fas fa-wrench"></i> Dev Tools
-                    </div>
-                    <div class="tags">
-                        <span class="tag">STM32CubeIDE</span>
-                        <span class="tag">STM32CubeProgrammer</span>
-                        <span class="tag">Git</span>
-                        <span class="tag">GitHub</span>
-                    </div>
-                </div>
-            </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <div class="acc-left">
+          <span class="acc-index">03</span>
+          <div class="acc-meta">
+            <span class="acc-category">Monitoring · IoT Display</span>
+            <div class="acc-title">Radar Vehicle Speed Monitor</div>
+            <div class="acc-tags-inline"><span class="tag">ESP32</span><span class="tag">LED Matrix</span></div>
+          </div>
         </div>
-    </section>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body" style="display:none">
+        <p>Speed monitoring system using LD2415H radar sensor and ESP32. Detects vehicle speed in real-time and displays it on a large LED matrix board. Suitable for traffic zones, industrial yards, and campus roads.</p>
+        <div class="acc-tech"><span class="tag">ESP32</span><span class="tag">LD2415H Radar</span><span class="tag">LED Matrix P10</span><span class="tag">Real-time DSP</span></div>
+        <a href="https://drive.google.com/drive/folders/1VPiEdBIWW1IWuNhIMDQUcQ8wvC92hroj" target="_blank" class="acc-gallery-link">📁 View Hardware Photos →</a>
+      </div>
+    </div>
 
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="container">
-            <h2 class="section-title">Professional Experience</h2>
-            <div class="timeline">
-
-                <!-- Job 1 -->
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">April 2024 – Present</span>
-                        <h3 class="timeline-title">Embedded System Engineer</h3>
-                        <p class="timeline-company">Radiogeect Digital Pvt Ltd – Jamshedpur, India</p>
-                        <ul>
-                            <li>Developed <strong>Radiowave Remote IO</strong>, a wireless P2P transceiver system using
-                                LoRa with a 10 km range.</li>
-                            <li>Engineered bidirectional communication for analog/digital data transmission using
-                                <strong>STM32F407</strong>.</li>
-                            <li>Designed a UWB-based real-time position tracking system for EOT cranes using STM32 and
-                                FreeRTOS.</li>
-                            <li>Integrated ADS1115 and MCP4725 for precise analog data acquisition and output.</li>
-                            <li>Built radar-based vehicle speed monitoring systems using LD2415H and ESP32 with LED
-                                matrix displays.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Job 2 -->
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">July 2023 – March 2024</span>
-                        <h3 class="timeline-title">Embedded System Developer Intern</h3>
-                        <p class="timeline-company">Radiogeect Digital Pvt Ltd – Jamshedpur, India</p>
-                        <ul>
-                            <li>Developed firmware for process controllers using <strong>STM32F373C8T6</strong>.</li>
-                            <li>Designed custom PCBs for process controllers with 4–20 mA inputs.</li>
-                            <li>Created custom libraries for driving P10, P4, and P2.5 LED matrix displays with
-                                STM32F407VGT6.</li>
-                            <li>Built temperature/humidity displays using SHT20 sensors and RS485 communication.</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <div class="acc-left">
+          <span class="acc-index">04</span>
+          <div class="acc-meta">
+            <span class="acc-category">PCB Design · Prototyping</span>
+            <div class="acc-title">STM32F405 Custom Eval Board</div>
+            <div class="acc-tags-inline"><span class="tag">KiCad</span><span class="tag">4-Layer PCB</span></div>
+          </div>
         </div>
-    </section>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body" style="display:none">
+        <p>A 4-layer custom development board in KiCad featuring UART, SPI, I2C, USB, and GPIO breakouts. Clean power delivery, controlled impedance traces, and proper signal integrity on high-speed lines.</p>
+        <div class="acc-tech"><span class="tag">KiCad</span><span class="tag">4-Layer PCB</span><span class="tag">STM32F405</span><span class="tag">USB</span><span class="tag">Impedance Control</span></div>
+        <a href="https://drive.google.com/drive/folders/1VPiEdBIWW1IWuNhIMDQUcQ8wvC92hroj" target="_blank" class="acc-gallery-link">📁 View PCB Renders →</a>
+      </div>
+    </div>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title">Academic Projects</h2>
-            <div class="project-grid">
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <div class="project-title">Amplifying Education System</div>
-                        <div class="project-tech">STM32 | LoRa | GSM</div>
-                        <p>Wireless classroom communication system enabling real-time announcements and timetable
-                            automation.</p>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <div class="project-title">STM32F405 Eval Board</div>
-                        <div class="project-tech">KiCad | 4-layer PCB</div>
-                        <p>Designed a custom development board with UART, SPI, I2C, USB, and GPIO interfaces for
-                            embedded prototyping.</p>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <div class="project-title">Home Automation System</div>
-                        <div class="project-tech">ESP32 | Blynk | Wi-Fi</div>
-                        <p>Smart home controller allowing for remote switching of appliances over Wi-Fi via the Blynk
-                            IoT platform.</p>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <div class="project-title">Accident Prevention System</div>
-                        <div class="project-tech">Arduino | Eye-Blink Sensor</div>
-                        <p>Driver drowsiness detection system with alert triggers based on real-time eye-blink
-                            monitoring.</p>
-                    </div>
-                </div>
-
-            </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <div class="acc-left">
+          <span class="acc-index">05</span>
+          <div class="acc-meta">
+            <span class="acc-category">Process Control · Industrial</span>
+            <div class="acc-title">Industrial Process Controllers</div>
+            <div class="acc-tags-inline"><span class="tag">STM32F373</span><span class="tag">Modbus</span></div>
+          </div>
         </div>
-    </section>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body" style="display:none">
+        <p>Firmware for process controllers using STM32F373C8T6 with custom PCB design. Features 4–20 mA analog inputs for temperature, pressure, and flow measurement. Communicates over RS485/Modbus with SCADA systems.</p>
+        <div class="acc-tech"><span class="tag">STM32F373</span><span class="tag">4–20mA</span><span class="tag">RS485</span><span class="tag">Modbus</span><span class="tag">SCADA</span></div>
+        <a href="https://drive.google.com/drive/folders/1VPiEdBIWW1IWuNhIMDQUcQ8wvC92hroj" target="_blank" class="acc-gallery-link">📁 View Hardware Photos →</a>
+      </div>
+    </div>
 
-    <!-- Education Section -->
-    <section id="education">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-
-            <!-- B.Tech -->
-            <div class="edu-card">
-                <div class="edu-header">
-                    <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <div class="edu-details">
-                        <h3>B.Tech – Electronics & Communication Engineering</h3>
-                        <p>Rajiv Gandhi University of Knowledge Technologies, Srikakulam</p>
-                    </div>
-                </div>
-                <div class="edu-meta">
-                    <span>April 2024</span>
-                    <span style="color: var(--accent-color); font-weight: bold;">GPA: 8.46</span>
-                </div>
-            </div>
-
-            <!-- Pre-University -->
-            <div class="edu-card">
-                <div class="edu-header">
-                    <div class="edu-icon"><i class="fas fa-university"></i></div>
-                    <div class="edu-details">
-                        <h3>Pre-University Course – MPC</h3>
-                        <p>Rajiv Gandhi University of Knowledge Technologies, Srikakulam</p>
-                    </div>
-                </div>
-                <div class="edu-meta">
-                    <span>May 2020</span>
-                    <span style="color: var(--accent-color); font-weight: bold;">GPA: 8.0</span>
-                </div>
-            </div>
-
-            <!-- SSC -->
-            <div class="edu-card">
-                <div class="edu-header">
-                    <div class="edu-icon"><i class="fas fa-school"></i></div>
-                    <div class="edu-details">
-                        <h3>Class X – SSC Board</h3>
-                        <p>Zilla Parishad High School, R.V. Palli</p>
-                    </div>
-                </div>
-                <div class="edu-meta">
-                    <span>April 2018</span>
-                    <span style="color: var(--accent-color); font-weight: bold;">GPA: 9.8</span>
-                </div>
-            </div>
-
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <div class="acc-left">
+          <span class="acc-index">06</span>
+          <div class="acc-meta">
+            <span class="acc-category">Wearable · Health Tech</span>
+            <div class="acc-title">Health Monitoring Wristband</div>
+            <div class="acc-tags-inline"><span class="tag">nRF52</span><span class="tag">BLE + Wi-Fi</span></div>
+          </div>
         </div>
-    </section>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body" style="display:none">
+        <p>Advanced wearable health monitor on nRF52. Integrates MAX32664 + MAX86141 for heart rate, MAX30205 for skin temperature, KX122 and LSM6DSM accelerometers for motion, and AFE4400 for SpO2 and respiratory rate. MAX77658 PMIC handles charging. nRF70 Wi-Fi enables cloud data access.</p>
+        <div class="acc-tech"><span class="tag">nRF52</span><span class="tag">BLE</span><span class="tag">MAX32664</span><span class="tag">MAX86141</span><span class="tag">AFE4400 SpO2</span><span class="tag">nRF70 Wi-Fi</span><span class="tag">MAX77658 PMIC</span></div>
+        <a href="https://drive.google.com/drive/folders/1VPiEdBIWW1IWuNhIMDQUcQ8wvC92hroj" target="_blank" class="acc-gallery-link">📁 View PCB Design →</a>
+      </div>
+    </div>
 
-    <!-- Achievements Section -->
-    <section id="achievements">
-        <div class="container">
-            <h2 class="section-title">Certifications & Achievements</h2>
-
-            <div class="accomplish-card">
-                <div class="acc-header">
-                    <i class="fas fa-medal acc-icon"></i>
-                    <h3>Chess Achievements</h3>
-                </div>
-                <p>State-Level Chess Player and 3-time District First Place winner.</p>
-            </div>
-
-            <div class="accomplish-card">
-                <div class="acc-header">
-                    <i class="fas fa-certificate acc-icon"></i>
-                    <h3>Udemy Certifications</h3>
-                </div>
-                <ul class="acc-list">
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <span>Mastering Microcontroller and Embedded Driver Development (MCU1)</span>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <span>Mastering Microcontroller: Timers, PWM, CAN, Low Power (MCU2)</span>
-                    </li>
-                </ul>
-            </div>
-
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <div class="acc-left">
+          <span class="acc-index">07</span>
+          <div class="acc-meta">
+            <span class="acc-category">HID · BLE · Consumer Hardware</span>
+            <div class="acc-title">Backlighted Split Wireless Keyboard</div>
+            <div class="acc-tags-inline"><span class="tag">nRF52</span><span class="tag">nPM1100</span></div>
+          </div>
         </div>
-    </section>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body" style="display:none">
+        <p>Custom ergonomic split keyboard on nRF52 SoC. Firmware scans the key matrix, debounces inputs, and transmits HID reports over BLE. Dedicated LED driver IC controls per-key backlighting. nPM1100 PMIC handles Li-Po charging and power path. PCB tackles BLE antenna placement, high-speed layout, and sleep-mode optimization for long battery life.</p>
+        <div class="acc-tech"><span class="tag">nRF52</span><span class="tag">BLE HID</span><span class="tag">nPM1100 PMIC</span><span class="tag">LED Driver IC</span><span class="tag">Matrix Scanning</span><span class="tag">Li-Po Battery</span><span class="tag">PCB Antenna</span></div>
+        <a href="https://drive.google.com/drive/folders/1VPiEdBIWW1IWuNhIMDQUcQ8wvC92hroj" target="_blank" class="acc-gallery-link">📁 View PCB Renders →</a>
+      </div>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <h2 class="section-title" style="color: white;">Get In Touch</h2>
-            <p>I am currently available for new opportunities in embedded systems engineering.</p>
-
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:surendraruka514@gmail.com">surendraruka514@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:+916304480702">+91 6304480702</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Kadapa, Andhra Pradesh, India</span>
-                </div>
-            </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <div class="acc-left">
+          <span class="acc-index">08</span>
+          <div class="acc-meta">
+            <span class="acc-category">Education · Wireless · IoT</span>
+            <div class="acc-title">Smart Amplify Education System</div>
+            <div class="acc-tags-inline"><span class="tag">STM32F446RE</span><span class="tag">LoRa</span></div>
+          </div>
         </div>
-    </section>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body" style="display:none">
+        <p>A wireless smart announcement system for schools and colleges using a single master (department office) and multi-slave (classrooms) architecture. The master node connects via HC-05 Bluetooth to a mobile app, allowing staff to send announcements to selected classrooms or broadcast to all simultaneously. Each classroom slave drives a P10 LED matrix display for real-time message display. Built on STM32F446RE with LoRa for long-range wireless transmission and an RTC module for automated timetable announcements and real-time faculty notifications — eliminating the need for wired PA infrastructure.</p>
+        <div class="acc-tech"><span class="tag">STM32F446RE</span><span class="tag">LoRa</span><span class="tag">HC-05 Bluetooth</span><span class="tag">SIM800L GSM</span><span class="tag">P10 LED Matrix</span><span class="tag">RTC Module</span><span class="tag">Master-Slave</span><span class="tag">Mobile App</span></div>
+        <a href="https://drive.google.com/drive/folders/1VPiEdBIWW1IWuNhIMDQUcQ8wvC92hroj" target="_blank" class="acc-gallery-link">📁 View Hardware Photos →</a>
+      </div>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Surendra Kumar Reddy Ruka. All Rights Reserved.</p>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery-header fade-in">
+    <div class="section-label" style="margin-top:4rem;">Work Gallery</div>
+    <p class="section-desc">PCB renders, assembled boards, ESP dashboards, hardware prototypes — a live look at everything I've built.</p>
+    <a href="https://drive.google.com/drive/folders/1VPiEdBIWW1IWuNhIMDQUcQ8wvC92hroj" target="_blank" class="gallery-drive-btn">
+      Open Full Gallery in Google Drive ↗
+    </a>
+  </div>
+
+  <div class="drive-embed-wrap fade-in">
+    <div class="drive-embed-bar">
+      <div class="drive-bar-dots"><span></span><span></span><span></span></div>
+      <span class="drive-bar-label">drive.google.com — My Works</span>
+      <a href="https://drive.google.com/drive/folders/1VPiEdBIWW1IWuNhIMDQUcQ8wvC92hroj" target="_blank" class="drive-bar-open">Open ↗</a>
+    </div>
+    <div class="drive-embed-frame">
+      <iframe src="https://drive.google.com/embeddedfolderview?id=1VPiEdBIWW1IWuNhIMDQUcQ8wvC92hroj#grid" frameborder="0" allowfullscreen title="My Works Gallery"></iframe>
+    </div>
+    <div class="drive-embed-footer">💡 Ensure folder sharing is set to "Anyone with the link" in Google Drive.</div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-label">How It Works</div>
+  <h2 class="section-title">My Work Process</h2>
+  <p class="section-desc">A clear workflow so you always know where your project stands.</p>
+  <div class="process-steps">
+    <div class="process-step fade-in"><div class="step-dot">01</div><h4>Discovery Call</h4><p>We discuss requirements, constraints, timeline, and budget.</p></div>
+    <div class="process-step fade-in"><div class="step-dot">02</div><h4>Proposal & Scope</h4><p>Clear project scope, milestones, and cost estimate. No surprises.</p></div>
+    <div class="process-step fade-in"><div class="step-dot">03</div><h4>Design & Build</h4><p>Firmware written, PCBs designed, systems tested with regular check-ins.</p></div>
+    <div class="process-step fade-in"><div class="step-dot">04</div><h4>Review & Iterate</h4><p>You test and give feedback. I iterate until everything works perfectly.</p></div>
+    <div class="process-step fade-in"><div class="step-dot">05</div><h4>Delivery</h4><p>Full handover: code, schematics, docs, and a walkthrough call.</p></div>
+  </div>
+</section>
+
+<!-- TECH -->
+<section id="tech">
+  <div class="section-label">Tech Stack</div>
+  <h2 class="section-title">Tools & Technologies</h2>
+  <p class="section-desc">The hardware and software I work with every day.</p>
+  <div class="tech-grid">
+    <div class="tech-item"><span class="ti">🔵</span><div class="tech-name">STM32</div></div>
+    <div class="tech-item"><span class="ti">📶</span><div class="tech-name">ESP32</div></div>
+    <div class="tech-item"><span class="ti">🟢</span><div class="tech-name">Arduino</div></div>
+    <div class="tech-item"><span class="ti">🔷</span><div class="tech-name">nRF52</div></div>
+    <div class="tech-item"><span class="ti">⚡</span><div class="tech-name">FreeRTOS</div></div>
+    <div class="tech-item"><span class="ti">📡</span><div class="tech-name">LoRa</div></div>
+    <div class="tech-item"><span class="ti">🦷</span><div class="tech-name">BLE</div></div>
+    <div class="tech-item"><span class="ti">🔗</span><div class="tech-name">CAN Bus</div></div>
+    <div class="tech-item"><span class="ti">🔌</span><div class="tech-name">Modbus</div></div>
+    <div class="tech-item"><span class="ti">📟</span><div class="tech-name">RS485</div></div>
+    <div class="tech-item"><span class="ti">🌐</span><div class="tech-name">UWB</div></div>
+    <div class="tech-item"><span class="ti">🖥️</span><div class="tech-name">KiCad</div></div>
+    <div class="tech-item"><span class="ti">🔧</span><div class="tech-name">Altium</div></div>
+    <div class="tech-item"><span class="ti">💻</span><div class="tech-name">STM32CubeIDE</div></div>
+    <div class="tech-item"><span class="ti">🐍</span><div class="tech-name">Python</div></div>
+    <div class="tech-item"><span class="ti">📊</span><div class="tech-name">MQTT</div></div>
+    <div class="tech-item"><span class="ti">📐</span><div class="tech-name">SPI / I2C</div></div>
+    <div class="tech-item"><span class="ti">🔋</span><div class="tech-name">nPM1100</div></div>
+    <div class="tech-item"><span class="ti">📈</span><div class="tech-name">Signal Integrity</div></div>
+    <div class="tech-item"><span class="ti">🧰</span><div class="tech-name">Git / GitHub</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <div class="section-label">Get In Touch</div>
+      <h2>Let's Build Something Together</h2>
+      <p>Available for firmware projects, PCB design, IoT builds, and consulting. Short-term tasks or long-term contracts.</p>
+      <div class="contact-channels">
+        <a href="mailto:surendraruka514@gmail.com" class="channel-link">
+          <div class="channel-icon">📧</div>
+          <div><div class="channel-label">Email</div><div class="channel-val">surendraruka514&#64;gmail.com</div></div>
+        </a>
+        <a href="https://wa.me/916304480702" target="_blank" class="channel-link">
+          <div class="channel-icon">💬</div>
+          <div><div class="channel-label">WhatsApp</div><div class="channel-val">+91 6304480702</div></div>
+        </a>
+        <a href="https://calendly.com/surendraruka514" target="_blank" class="channel-link">
+          <div class="channel-icon">📅</div>
+          <div><div class="channel-label">Book a Call</div><div class="channel-val">Schedule a free discovery call</div></div>
+        </a>
+      </div>
+    </div>
+
+    <form class="contact-form" action="https://formspree.io/f/xjgaakdl" method="POST" onsubmit="handleSubmit(event)">
+      <input type="hidden" name="_replyto" value="surendraruka514@gmail.com"/>
+      <input type="hidden" name="_subject" value="New Freelance Inquiry — Surendra Ruka Portfolio"/>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input class="form-input" type="text" name="name" placeholder="John Smith" required/>
         </div>
-    </footer>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" name="email" placeholder="john@company.com" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Service Needed</label>
+        <select class="form-select" name="service">
+          <option value="">Select a service...</option>
+          <option>Firmware Development</option>
+          <option>PCB Design</option>
+          <option>IoT Solutions</option>
+          <option>Protocol Integration</option>
+          <option>Signal Integrity Analysis</option>
+          <option>Power Integrity Simulation</option>
+          <option>Full Project (Hardware + Firmware)</option>
+          <option>Consulting</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Project Budget</label>
+        <select class="form-select" name="budget">
+          <option value="">Select budget range...</option>
+          <option>Under $500</option>
+          <option>$500 – $2,000</option>
+          <option>$2,000 – $5,000</option>
+          <option>$5,000+</option>
+          <option>Let's discuss</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Project Description</label>
+        <textarea class="form-textarea" name="message" placeholder="Describe your project, requirements, timeline, and constraints..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Inquiry →</button>
+    </form>
+  </div>
+</section>
 
-    <script src="script.js"></script>
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Surendra Kumar Reddy Ruka · Kadapa, Andhra Pradesh, India</p>
+  <div class="footer-links">
+    <a href="mailto:surendraruka514@gmail.com">Email</a>
+    <a href="https://wa.me/916304480702">WhatsApp</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Hire Me</a>
+  </div>
+</footer>
+
+<script>
+  // Accordion
+  function toggleAcc(header) {
+    const item = header.closest('.acc-item');
+    const body = item.querySelector('.acc-body');
+    const chevron = header.querySelector('.acc-chevron');
+    const isOpen = item.classList.contains('open');
+    if (isOpen) {
+      item.classList.remove('open');
+      body.style.display = 'none';
+      chevron.textContent = '▼';
+    } else {
+      item.classList.add('open');
+      body.style.display = 'block';
+      chevron.textContent = '▲';
+    }
+  }
+
+  // Fade-in on load + scroll
+  function revealFadeIns() {
+    document.querySelectorAll('.fade-in:not(.visible)').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 40) el.classList.add('visible');
+    });
+  }
+  window.addEventListener('DOMContentLoaded', revealFadeIns);
+  window.addEventListener('scroll', revealFadeIns, { passive: true });
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('.form-submit');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(res => {
+      if (res.ok) {
+        btn.textContent = "Sent! I'll be in touch soon ✓";
+        btn.style.background = '#00ff9d';
+        form.reset();
+      } else {
+        btn.textContent = 'Something went wrong. Try email directly.';
+        btn.style.background = '#ff5f57';
+        btn.disabled = false;
+      }
+    }).catch(() => {
+      btn.textContent = 'Network error. Try email directly.';
+      btn.style.background = '#ff5f57';
+      btn.disabled = false;
+    });
+  }
+
+  // Nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : ''; });
+  }, { passive: true });
+</script>
 </body>
-
 </html>
